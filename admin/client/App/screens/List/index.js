@@ -162,15 +162,18 @@ const ListView = React.createClass({
 		});
 	},
 	updateSearch (e) {
-		clearTimeout(this._searchTimeout);
+		//clearTimeout(this._searchTimeout);
 		this.setState({
 			searchString: e.target.value,
 		});
-		var delay = e.target.value.length > 1 ? 150 : 0;
-		this._searchTimeout = setTimeout(() => {
-			delete this._searchTimeout;
-			this.props.dispatch(setActiveSearch(this.state.searchString));
-		}, delay);
+		// var delay = e.target.value.length > 1 ? 150 : 0;
+		// this._searchTimeout = setTimeout(() => {
+		// 	delete this._searchTimeout;
+		// 	this.props.dispatch(setActiveSearch(this.state.searchString));
+		// }, delay);
+	},
+	handleSearchSubmit () {
+		this.props.dispatch(setActiveSearch(this.state.searchString));
 	},
 	handleSearchClear () {
 		this.props.dispatch(setActiveSearch(''));
@@ -229,10 +232,11 @@ const ListView = React.createClass({
 		return false;
 	},
 	renderSearch () {
-		var searchClearIcon = classnames('ListHeader__search__icon octicon', {
-			'is-search octicon-search': !this.state.searchString.length,
-			'is-clear octicon-x': this.state.searchString.length,
-		});
+		var searchClearIcon = classnames('ListHeader__clear__icon octicon', 
+			'is-clear octicon-x');
+    var searchSubmitIcon = classnames('ListHeader__search__icon octicon'
+        ,'is-search octicon-search');
+
 		return (
 			<InputGroup.Section grow className="ListHeader__search">
 				<FormInput
@@ -250,6 +254,14 @@ const ListView = React.createClass({
 					onClick={this.handleSearchClear}
 					disabled={!this.state.searchString.length}
 					className={searchClearIcon}
+				/>
+      	<button
+					ref="listSearchSubmit"
+					type="button"
+					title="Clear search query"
+					onClick={this.handleSearchSubmit}
+					disabled={!this.state.searchString.length}
+					className={searchSubmitIcon}
 				/>
 			</InputGroup.Section>
 		);

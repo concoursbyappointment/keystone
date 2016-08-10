@@ -43,14 +43,14 @@
 .ListHeader__search {
 	position: relative;
 }
-/*button*/.ListHeader__search__icon {
+/*button*/.ListHeader__clear__icon {
 	background: none;
 	border: none;
 	color: @gray-light;
 	font-weight: bold;
 	height: 100%;
 	position: absolute;
-	right: 0;
+	right: 2.4em;
 	text-align: center;
 	top: 0;
 	width: 2.2em;
@@ -75,7 +75,30 @@
 	}
 }
 
+/*button*/.ListHeader__search__icon {
+	background: none;
+	border: none;
+	color: @gray-light;
+	font-weight: bold;
+	height: 100%;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	top: 0;
+	width: 2.2em;
+	z-index: 2; // above the form field on focus
 
+	// styles when clear icon
+		&:hover,
+		&:focus {
+			color: @app-primary;
+			outline: 0 none;
+			text-decoration: none;
+		}
+		&:active {
+			color: darken(@app-primary, 10%);
+		}
+}
 
 
 // Expand
