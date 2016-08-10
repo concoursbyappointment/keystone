@@ -69,6 +69,7 @@
     "mongoose": "4.5.8",
     "morgan": "1.7.0",
     "multer": "0.1.8",
+    "node-sass-middleware": "^0.9.8",
     "numeral": "1.5.3",
     "object-assign": "4.1.0",
     "qs": "4.0.0",
